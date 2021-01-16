@@ -12,15 +12,15 @@ jobs:
       - uses: actions/checkout@v2
         name: Checkout repository
 
-      - uses: pmorelli92/github-container-registry-build-push@1.0.0
+      - uses: pmorelli92/github-container-registry-build-push@1.0.1
         name: Build and Publish latest service image
         with:
           # Read note below to see how to generate the PAT
           personal-access-token: ${{secrets.GHCR_PAT}}
           docker-image-name: my-svc
           docker-image-tag: latest
-          dockerfile-path: ./src/database/Dockerfile
-          build-context: ./src/database
+          dockerfile-path: ./src/svc/Dockerfile
+          build-context: ./src/svc
 ```
 
 ## Generate PAT
