@@ -13,6 +13,8 @@ echo ${PERSONAL_ACCESS_TOKEN} | docker login https://ghcr.io -u ${GITHUB_ACTOR} 
 IMAGE_ID=ghcr.io/${GITHUB_ACTOR}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}
 IMAGE_ID=$(echo ${IMAGE_ID} | tr '[A-Z]' '[a-z]')
 
+#TODO REMOVE
+echo build -t ${IMAGE_ID} -f ${DOCKERFILE_PATH} ${BUILD_CONTEXT}
 # Build image
 docker build -t ${IMAGE_ID} -f ${DOCKERFILE_PATH} ${BUILD_CONTEXT}
 
