@@ -13,7 +13,8 @@ inputs:
     required: false
   dockerfile-path:
     description: 'Dockerfile path and name'
-    required: true
+    default: "Dockerfile"
+    required: false
   build-context:
     description: 'Path to the build context'
     default: "."
