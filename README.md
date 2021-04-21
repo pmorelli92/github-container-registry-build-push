@@ -12,20 +12,15 @@ jobs:
       - uses: actions/checkout@v2
         name: Checkout repository
 
-      - uses: pmorelli92/github-container-registry-build-push@1.0.1
+      - uses: pmorelli92/github-container-registry-build-push@2.0.0
         name: Build and Publish latest service image
         with:
-          # Read note below to see how to generate the PAT
-          personal-access-token: ${{secrets.GHCR_PAT}}
+          github-push-secret: ${{secrets.GITHUB_TOKEN}}
           docker-image-name: my-svc
-          docker-image-tag: latest
-          dockerfile-path: ./src/svc/Dockerfile
-          build-context: ./src/svc
+          docker-image-tag: latest # optional
+          dockerfile-path: ./src/svc/Dockerfile # optional
+          build-context: ./src/svc # optional
 ```
-
-## Generate PAT
-
-For generating the PAT (Personal Access Token) you can follow [this guide from GitHub.](https://docs.github.com/en/packages/guides/migrating-to-github-container-registry-for-docker-images#authenticating-with-the-container-registry). As the guide indicates, the PAT should be stored under the repository secret variables and referenced via `${{secrets.SECRET_NAME}}`.
 
 ## Inspirations and acknowledgments
 
