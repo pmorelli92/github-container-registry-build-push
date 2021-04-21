@@ -1,8 +1,8 @@
 name: 'Github Container Registry: Build and push Docker image'
 description: 'Github Action that builds and pushes a docker image to Github Container Registry.'
 inputs:
-  personal-access-token:
-    description: 'Token that has `write:packages` scope to authenticate against GCHR.'
+  github-push-secret:
+    description: 'Token such as GITHUB_TOKEN that has `write:packages` scope to authenticate against GCHR.'
     required: true
   docker-image-name:
     description: 'Docker Image name'
@@ -23,7 +23,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.personal-access-token }}
+    - ${{ inputs.github-push-secret }}
     - ${{ inputs.docker-image-name }}
     - ${{ inputs.docker-image-tag }}
     - ${{ inputs.dockerfile-path }}
