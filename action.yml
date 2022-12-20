@@ -21,7 +21,7 @@ inputs:
     required: false
   build-only:
     description: "If 'true', skip pushing the image"
-    default: "."
+    default: "false"
     required: false
 runs:
   using: 'docker'
