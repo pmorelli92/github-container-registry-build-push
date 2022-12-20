@@ -1,10 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
 GITHUB_PUSH_SECRET=$1
 DOCKER_IMAGE_NAME=$2
 DOCKER_IMAGE_TAG=$3
 DOCKERFILE_PATH=$4
 BUILD_CONTEXT=$5
+BUILD_ONLY=$6
 
 # Login to GHCR
 echo ${GITHUB_PUSH_SECRET} | docker login https://ghcr.io -u ${GITHUB_ACTOR} --password-stdin
@@ -22,4 +23,8 @@ echo build -t ${IMAGE_ID} -f ${DOCKERFILE_PATH} ${BUILD_CONTEXT}
 docker build -t ${IMAGE_ID} -f ${DOCKERFILE_PATH} ${BUILD_CONTEXT}
 
 # Push image
-docker push ${IMAGE_ID}
+if [ "$BUILD_ONLY" == "true" ]; then
+	echo "skipping push"
+else 
+	docker push ${IMAGE_ID}
+fi
