@@ -20,6 +20,7 @@ jobs:
           docker-image-tag: latest # optional
           dockerfile-path: ./src/svc/Dockerfile # optional
           build-context: ./src/svc # optional
+          build-only: false # optional
 ```
 
 ## Inspirations and acknowledgments

@@ -19,6 +19,10 @@ inputs:
     description: 'Path to the build context'
     default: "."
     required: false
+  build-only:
+    description: "If 'true', skip pushing the image"
+    default: "false"
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -28,6 +32,7 @@ runs:
     - ${{ inputs.docker-image-tag }}
     - ${{ inputs.dockerfile-path }}
     - ${{ inputs.build-context}}
+    - ${{ inputs.build-only }}
 branding:
   icon: 'box'
   color: 'blue'
