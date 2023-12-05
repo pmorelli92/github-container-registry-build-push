@@ -19,19 +19,19 @@ IMAGE_ID=ghcr.io/${GITHUB_OWNER}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}
 IMAGE_ID=$(echo ${IMAGE_ID} | tr '[A-Z]' '[a-z]')
 
 # Format the docker build arguments
-IFS='\n'
-array=($DOCKER_BUILD_ARGS)
+IFS=$'\n' read -a items <<< "$DOCKER_BUILD_ARGS"
 BUILD_ARGS=''
-for element in "${array[@]}"
+for element in "${items[@]}"
 do
 	if [ "$element" ];then
 		BUILD_ARGS="$BUILD_ARGS --build-arg \"$element\""
 	fi
 done
+echo $BUILD_ARGS
 
 # Build image
-echo build -t ${IMAGE_ID} -f ${DOCKERFILE_PATH} ${BUILD_ARGS} ${BUILD_CONTEXT}
-docker build -t ${IMAGE_ID} -f ${DOCKERFILE_PATH} ${BUILD_ARGS} ${BUILD_CONTEXT}
+echo build ${BUILD_CONTEXT} -t ${IMAGE_ID} -f ${DOCKERFILE_PATH} ${BUILD_ARGS}
+docker build ${BUILD_CONTEXT} -t ${IMAGE_ID} -f ${DOCKERFILE_PATH} ${BUILD_ARGS}
 
 # Push image
 if [ "$BUILD_ONLY" == "true" ]; then
