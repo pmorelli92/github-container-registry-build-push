@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
         name: Checkout repository
 
-      - uses: pmorelli92/github-container-registry-build-push@2.0.0
+      - uses: pmorelli92/github-container-registry-build-push@2.2.0
         name: Build and Publish latest service image
         with:
           github-push-secret: ${{secrets.GITHUB_TOKEN}}
