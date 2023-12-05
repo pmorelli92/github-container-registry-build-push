@@ -1,3 +1,34 @@
+## ARCHIVED
+
+I recently started working again with Github Actions and given the fact that I needed to send build arguments and secrets to the Dockerfile I started to look at all the alternatives available as those are not supported in this repo.
+
+I found that the `docker/build-push-action` works for pushing into the GHCR as well, so what was the biggest benefit of this action is now taken care somewhere else with more features and mainteinance. Therefore I suggest that you switch over to that one, I leave below a little snippet on how I used the action:
+
+```
+- name: Set up Docker Buildx
+  uses: docker/setup-buildx-action@v3
+
+- name: Login to GHCR
+  uses: docker/login-action@v3
+  with:
+    registry: ghcr.io/my-org
+    username: ${{ github.actor }}
+    password: ${{ secrets.GITHUB_TOKEN }}
+
+- name: Build and push
+  uses: docker/build-push-action@v5
+  with:
+    push: true
+    tags: |
+      ghcr.io/my-org/my-svc:latest
+      ghcr.io/my-org/my-svc:some-tag
+    build-args: |
+      "x=y"
+      "foo=bar"
+    secrets: |
+      "secret-id=${{secrets.SECRET_VALUE}}"
+```
+
 # GitHub Container Registry : Build and push
 
 Github Action that builds and pushes a docker image to Github Container Registry.
