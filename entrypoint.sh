@@ -20,7 +20,7 @@ IMAGE_ID=$(echo ${IMAGE_ID} | tr '[A-Z]' '[a-z]')
 
 # Format the docker build arguments
 echo $DOCKER_BUILD_ARGS
-IFS=$'\n' read -a items <<< "$DOCKER_BUILD_ARGS"
+IFS=$',' read -a items <<< "$DOCKER_BUILD_ARGS"
 BUILD_ARGS=''
 for element in "${items[@]}"
 do

@@ -24,7 +24,7 @@ inputs:
     default: "false"
     required: false
   docker-build-args:
-    description: "Newline-separated list of build arguments. Must be of the format KEY=VALUE"
+    description: "Comma-separated list of build arguments. Must be of the format KEY=VALUE,KEY=VALUE"
     default: ""
     required: false
 runs:
