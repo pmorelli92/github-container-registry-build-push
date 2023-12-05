@@ -21,6 +21,9 @@ jobs:
           dockerfile-path: ./src/svc/Dockerfile # optional
           build-context: ./src/svc # optional
           build-only: false # optional
+          docker-build-args: |- #optional
+            FOO=BAR
+            OTHER=VALUE
 ```
 
 ## Inspirations and acknowledgments

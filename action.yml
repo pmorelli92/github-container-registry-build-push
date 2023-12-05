@@ -23,6 +23,10 @@ inputs:
     description: "If 'true', skip pushing the image"
     default: "false"
     required: false
+  docker-build-args:
+    description: "Newline-separated list of build arguments. Must be of the format KEY=VALUE"
+    default: ""
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -33,6 +37,7 @@ runs:
     - ${{ inputs.dockerfile-path }}
     - ${{ inputs.build-context}}
     - ${{ inputs.build-only }}
+    - ${{ inputs.docker-build-args }}
 branding:
   icon: 'box'
   color: 'blue'
