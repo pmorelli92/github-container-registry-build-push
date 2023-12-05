@@ -29,7 +29,6 @@ do
 done
 
 # Build image
-echo build ${BUILD_CONTEXT} -t ${IMAGE_ID} -f ${DOCKERFILE_PATH} ${BUILD_ARGS}
 docker build ${BUILD_CONTEXT} -t ${IMAGE_ID} -f ${DOCKERFILE_PATH} ${BUILD_ARGS}
 
 # Push image
