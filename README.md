@@ -12,15 +12,16 @@ jobs:
       - uses: actions/checkout@v2
         name: Checkout repository
 
-      - uses: pmorelli92/github-container-registry-build-push@2.0.0
+      - uses: pmorelli92/github-container-registry-build-push@2.2.1
         name: Build and Publish latest service image
         with:
           github-push-secret: ${{secrets.GITHUB_TOKEN}}
           docker-image-name: my-svc
           docker-image-tag: latest # optional
-          dockerfile-path: ./src/svc/Dockerfile # optional
-          build-context: ./src/svc # optional
+          dockerfile-path: Dockerfile # optional
+          build-context: . # optional
           build-only: false # optional
+          docker-build-args: FOO=BAR,OTHER=VALUE # optional
 ```
 
 ## Inspirations and acknowledgments
